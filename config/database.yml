@@ -22,6 +22,6 @@ test:
 
 production:
   adapter: postgresql
-  host: localhost
+  host: <%= ENV.fetch("DATABASE_URL") %>>
   username: user
   database: app-dev
