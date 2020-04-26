@@ -1,24 +1,25 @@
 @import 'bootstrap/dist/css/bootstrap';
 
 .navbar {
-  background-color: black !important;
-
+  background-color: white !important;
 }
 
 .navbar-brand {
   font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
+  text-decoration: none !important;
 }
 
 .nav-link {
-  color: white !important;
+  color: #777 !important;
+  text-transform: capitalize;
 }
 
 #logo {
   float: left;
   font-size: 1.7em;
-  color: #fff;
+  color: #444;
   text-transform: uppercase;
   letter-spacing: -1px;
   font-weight: bold;
@@ -31,8 +32,6 @@
 .jumbotron-wrapper {
   position: relative;
   overflow: hidden;
-  border-radius: .2rem;
-  box-shadow: 0 0 0 .1rem white;
 }
 
 .jumbotron {
@@ -63,7 +62,7 @@ html, body {
 
 #page-content {
   flex: 1 0 auto;
-  background-color: lightgrey;
+  background-color: whitesmoke;
 }
 
 #sticky-footer {
