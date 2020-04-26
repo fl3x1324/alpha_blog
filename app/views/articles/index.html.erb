@@ -1,9 +1,11 @@
 <div class="page-content">
   <h1 class="text-center mt-4">Listing all articles</h1>
   <div class="container">
-    <p>
-      <%= link_to 'New article', new_article_path %>
-    </p>
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <%= link_to '+ New article', new_article_path, class: "btn btn-lg btn-outline-success" %>
+      </div>
+    </div>
     <% @articles.each do |article| %>
       <div class="row justify-content-center">
         <div class="col-8 mt-4 mb-4">
@@ -22,8 +24,11 @@
                           data: {confirm: "U MAD?"} %>
             </div>
             <div class="card-footer text-muted">
-              Created <%= time_ago_in_words(article.created_at) %> ago,
-              Edited <%= time_ago_in_words(article.updated_at) %> ago
+              <% if article.created_at != article.updated_at %>
+                Edited <%= time_ago_in_words(article.updated_at) %> ago
+              <% else %>
+                Created <%= time_ago_in_words(article.created_at) %> ago.
+              <% end %>
             </div>
           </div>
         </div>
