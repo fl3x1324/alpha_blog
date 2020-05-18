@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(permit_article_fields)
+    @article = Article.new(article_params)
     @article.user = User.first
     if @article.save
       flash[:notice] = 'Article has been saved.'
@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
   def edit; end
 
   def update
-    if @article.update permit_article_fields
+    if @article.update article_params
       flash[:notice] = 'Article was updated successfully!'
       redirect_to @article
     else
@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
 
   private
 
-  def permit_article_fields
+  def article_params
     params.require(:article).permit(:title, :description)
   end
 
