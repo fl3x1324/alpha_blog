@@ -1,0 +1,10 @@
+root = true
+
+[*]
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.rb]
+indent_style = space
+tab_width = 2
+indent_size = tab

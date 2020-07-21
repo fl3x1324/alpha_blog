@@ -3,6 +3,7 @@
 # Our articles controller
 class ArticlesController < ApplicationController
   before_action :article_by_id, only: %i[show update edit destroy]
+  include ApplicationHelper
 
   def show
     format = params[:format]
@@ -14,7 +15,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.all
+    @articles = Article.paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -23,7 +24,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
     if @article.save
       flash[:notice] = 'Article has been saved.'
       redirect_to @article
