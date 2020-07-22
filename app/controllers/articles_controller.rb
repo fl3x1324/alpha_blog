@@ -2,8 +2,10 @@
 
 # Our articles controller
 class ArticlesController < ApplicationController
-  before_action :article_by_id, only: %i[show update edit destroy]
   include ApplicationHelper
+  before_action :article_by_id, only: %i[show update edit destroy]
+  before_action :require_user, except: %i[index show]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   def show
     format = params[:format]
@@ -58,5 +60,12 @@ class ArticlesController < ApplicationController
 
   def article_by_id
     @article = Article.find params[:id]
+  end
+
+  def require_same_user
+    if current_user != @article.user
+      flash[:alert] = "You can only edit or delete your own article!"
+      redirect_to @article
+    end
   end
 end

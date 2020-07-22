@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <% unless @user %>
+  <% if logged_in? %>
     <div class="row justify-content-center">
       <div class="col-8">
         <%= link_to '+ New article', new_article_path, class: "btn btn-lg btn-outline-success" %>
@@ -23,11 +23,13 @@
             </h5>
             <p class="card-text"><%= truncate(article.description, length: 200) %></p>
             <%= link_to "View", article_path(article), class: "btn btn-outline-primary" %>
-            <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-secondary" %>
-            <%= link_to "Delete", article_path(article),
+            <% if logged_in? && article.user == current_user %>
+              <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-secondary" %>
+              <%= link_to "Delete", article_path(article),
                         class: "btn btn-outline-danger",
                         method: :delete,
                         data: {confirm: "U MAD?"} %>
+            <% end %>
           </div>
           <div class="card-footer text-muted">
             <small>
